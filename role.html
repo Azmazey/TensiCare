@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Pilih Peran - TensiCare</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #FFF6F1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    text-align: center;
+    width: 100%;
+    max-width: 360px;
+    padding: 24px;
+}
+
+.logo-circle {
+    width: 120px;
+    height: 120px;
+    background-color: #FFF1E8;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+}
+
+.logo-circle img {
+    width: 200px;
+}
+
+h1 {
+    color: #1AA59A;
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+
+p {
+    color: #1AA59A;
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    font-weight: bold;
+}
+
+.btn-user {
+    background-color: #FFC8A2;
+    color: #333;
+}
+
+.btn-med {
+    background-color: #7CC6B8;
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo-circle">
+        <img src="logo.png" alt="Logo TensiCare">
+    </div>
+
+    <h1>Selamat Datang di TensiCare!</h1>
+    <p>Silakan pilih peran Anda</p>
+
+    <div class="card">
+        <a href="dashboard.html" class="btn btn-user">Pengguna</a>
+        <a href="loginnakes.html" class="btn btn-med">Tenaga Medis</a>
+    </div>
+
+</div>
+
+</body>
+</html>

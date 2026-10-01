@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Login Tenaga Kesehatan</title>
+<style>
+* { box-sizing: border-box; font-family: Arial, sans-serif; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #FFF6F1;
+}
+
+/* HEADER HIJAU */
+.header {
+  background: #1BA39C;
+  color: #fff;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* BACK BUTTON DI HEADER */
+.back-btn {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 22px;
+  margin-right: 16px;
+}
+
+/* JUDUL HEADER DI TENGAH */
+.header-title {
+  flex: 1;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* CONTAINER LOGIN */
+.container {
+  width: 100%;
+  max-width: 420px;
+  margin: 80px auto 0; /* geser ke bawah dari header */
+  padding: 0 20px;
+}
+
+/* LOGIN TITLE (TULISAN DI ATAS CARD) */
+.login-title {
+  text-align: center;
+  font-size: 18px; /* dikecilkan */
+  font-weight: bold;
+  color: #128F8B;
+  margin-bottom: 14px; /* jarak ke card */
+}
+
+/* CARD LOGIN */
+.card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 32px 28px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+
+/* INPUT */
+.input-group { margin-bottom: 18px; }
+
+input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  background: #71C4AD;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+input::placeholder { color: #ffffff; opacity: 0.95; }
+
+/* BUTTON */
+.btn-wrap { text-align: center; margin-top: 24px; }
+
+.login-btn {
+  padding: 12px 34px;
+  background: #128F8B;
+  color: #ffffff;
+  border-radius: 20px;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER HIJAU -->
+<div class="header">
+  <a href="role.html" class="back-btn">‹</a>
+  <div class="header-title">Tenaga Kesehatan</div>
+</div>
+
+<!-- LOGIN CONTAINER -->
+<div class="container">
+
+  <!-- TULISAN LOGIN DI ATAS CARD -->
+  <div class="login-title">Login</div>
+
+  <!-- CARD LOGIN -->
+  <div class="card">
+    <form action="monitoring.html">
+      <div class="input-group">
+        <input type="text" placeholder="Username" required>
+      </div>
+      <div class="input-group">
+        <input type="password" placeholder="Password" required>
+      </div>
+      <div class="btn-wrap">
+        <button type="submit" class="login-btn">Masuk</button>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+</body>
+</html>

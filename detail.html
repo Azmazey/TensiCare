@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Detail Ibu Hamil</title>
+<style>
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+body{margin:0;background:#FFF6F1}
+.header{background:#CFE7DF;padding:16px;text-align:center;color:#1BA39C;font-weight:600;position:relative}
+.back-btn{position:absolute;left:16px;top:14px;font-size:22px;text-decoration:none;color:#1BA39C;font-weight:bold}
+.card{background:#fff;width:90%;max-width:700px;margin:20px auto;padding:20px 24px;border-radius:22px}
+.sub{font-size:13px;color:#666;margin-bottom:14px}
+.section-title{ text-align:center;background:#1BA39C;color:#fff;font-weight:bold;font-size:14px;padding:10px;border-radius:16px;margin:10px 0 14px;}
+.filter-wrap{display:flex;justify-content:flex-start;margin-bottom:14px}
+.select-wrapper{position:relative;min-width:140px;}
+.select-wrapper select{width:100%;padding:8px 32px 8px 16px;border-radius:16px;border:none;background:#1BA39C;color:#fff;font-size:12px;cursor:pointer;appearance:none}
+.select-wrapper select option{color:#000;}
+.select-wrapper .arrow{position:absolute;top:50%;right:10px;transform:translateY(-50%);pointer-events:none;color:white;font-size:12px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:#E8F4F1;padding:8px}
+td{padding:8px;text-align:center;border-bottom:1px solid #eee}
+.normal,.warning{display:inline-block;min-width:72px;padding:4px 10px;border-radius:12px;font-size:11px;font-weight:bold;}
+.normal{background:#2ECC71;color:#fff}
+.warning{background:#F1C40F;color:#000}
+.pagination{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:14px}
+.arrow-btn{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;user-select:none}
+.arrow-btn.active{background:#E8F4F1;color:#000;cursor:pointer}
+.arrow-btn.disabled{background:#f0f0f0;color:#aaa}
+.page-info{font-size:12px;color:#666}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="monitoring.html" class="back-btn">‹</a>
+  Detail Ibu Hamil
+</div>
+
+<div class="card">
+  <h3 id="namaIbu"></h3>
+  <div class="sub"></div>
+
+  <div class="section-title">Riwayat Pengukuran</div>
+  <div class="filter-wrap">
+    <div class="select-wrapper">
+      <select id="filterSelect" onchange="setFilter(this.value)">
+        <option value="1">1 Hari</option>
+        <option value="7">7 Hari</option>
+        <option value="30" selected>30 Hari</option>
+      </select>
+      <span class="arrow">▼</span>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Waktu</th><th>Tekanan</th><th>Status</th></tr>
+    </thead>
+    <tbody id="dataTable"></tbody>
+  </table>
+
+  <div class="pagination">
+    <div id="prev" class="arrow-btn disabled" onclick="prevPage()">‹</div>
+    <div class="page-info" id="pageInfo"></div>
+    <div id="next" class="arrow-btn disabled" onclick="nextPage()">›</div>
+  </div>
+</div>
+
+<script>
+const patients=[
+ {name:"Sulastri",usia:"20 Minggu",data:[
+   ["30 Jan 2026 18:30","140 / 90","warning"],
+   ["29 Jan 2026 10:15","138 / 88","warning"],
+   ["28 Jan 2026 09:00","120 / 80","normal"],
+   ["25 Jan 2026 19:20","118 / 78","normal"],
+   ["20 Jan 2026 07:25","118 / 78","normal"]
+ ]},
+ {name:"Luna Maya",usia:"28 Minggu",data:[
+   ["29 Jan 2026 18:00","120 / 80","normal"],
+   ["26 Jan 2026 19:10","118 / 78","normal"],
+   ["24 Jan 2026 08:30","116 / 75","normal"],
+   ["20 Jan 2026 12:00","115 / 74","normal"]
+ ]},
+ {name:"Rina",usia:"15 Minggu",data:[
+   ["28 Jan 2026 10:20","112 / 72","normal"],
+   ["25 Jan 2026 11:15","114 / 73","normal"],
+   ["22 Jan 2026 08:00","113 / 72","normal"]
+ ]},
+ {name:"Dewi",usia:"32 Minggu",data:[
+   ["27 Jan 2026 12:30","122 / 80","normal"],
+   ["23 Jan 2026 14:10","120 / 79","normal"]
+ ]},
+ {name:"Ani",usia:"25 Minggu",data:[
+   ["30 Jan 2026 09:15","135 / 90","warning"],
+   ["28 Jan 2026 10:00","132 / 88","warning"],
+   ["26 Jan 2026 11:30","130 / 85","warning"]
+ ]},
+ {name:"Maya",usia:"30 Minggu",data:[
+   ["29 Jan 2026 08:00","118 / 78","normal"],
+   ["26 Jan 2026 09:20","116 / 75","normal"]
+ ]},
+ {name:"Sinta",usia:"18 Minggu",data:[
+   ["28 Jan 2026 07:30","119 / 77","normal"],
+   ["25 Jan 2026 10:45","118 / 76","normal"]
+ ]}
+];
+
+const params = new URLSearchParams(window.location.search);
+let currentIndex = patients.findIndex(p=>p.name===params.get("name"));
+if(currentIndex===-1) currentIndex=0;
+let currentFilter = 30;
+
+function renderIbu(){
+  const ibu = patients[currentIndex];
+  document.getElementById("namaIbu").innerText = ibu.name;
+  document.querySelector(".sub").innerText = "Usia kehamilan: " + ibu.usia;
+
+  let n = currentFilter;
+  if(n>ibu.data.length) n=ibu.data.length;
+  const filteredData = ibu.data.slice(0,n);
+
+  const tbody=document.getElementById("dataTable");
+  tbody.innerHTML="";
+  filteredData.forEach(d=>{
+    tbody.innerHTML+=`
+      <tr>
+        <td>${d[0]}</td>
+        <td>${d[1]}</td>
+        <td><span class="${d[2]}">${d[2]=="normal"?"Normal":"Waspada"}</span></td>
+      </tr>`;
+  });
+
+  document.getElementById("pageInfo").innerText = `${currentIndex+1} / ${patients.length}`;
+  document.getElementById("prev").className = currentIndex>0?"arrow-btn active":"arrow-btn disabled";
+  document.getElementById("next").className = currentIndex<patients.length-1?"arrow-btn active":"arrow-btn disabled";
+}
+
+function prevPage(){if(currentIndex>0){currentIndex--;renderIbu();}}
+function nextPage(){if(currentIndex<patients.length-1){currentIndex++;renderIbu();}}
+function setFilter(day){currentFilter=parseInt(day);renderIbu();}
+renderIbu();
+</script>
+</body>
+</html>

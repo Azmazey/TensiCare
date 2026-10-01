@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Riwayat Pengukuran</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #FFF6F1;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 20px;
+}
+
+.header {
+    background-color: #FFDCC5;
+    border-radius: 20px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    position: relative;
+    text-align: center;
+}
+
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 22px;
+    text-decoration: none;
+    color: #FF8A3D;
+    font-weight: bold;
+}
+
+.header-title {
+    color: #FF9A62;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+/* ===== FILTER DROPDOWN ===== */
+.label-dropdown {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 16px;
+    font-size: 13px;
+}
+
+.label-dropdown .label-box {
+    display: flex;
+    align-items: center;
+    background: #FFD9BF; /* kotak tetap oranye muda */
+    border-radius: 16px;
+    padding: 6px 12px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    user-select: none;
+}
+
+.label-dropdown .label-box .label,
+.label-dropdown .label-box .dropdown-btn {
+    #FF9A62;
+    font-weight: bold;
+    margin-right: 6px;
+}
+
+.label-dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 38px; /* di bawah kotak */
+    left: 0;
+    background-color: #FFD9BF;
+    border-radius: 12px;
+    min-width: 120px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+.label-dropdown .dropdown-content a {
+    display: block;
+    padding: 8px 12px;
+    color: #FF9A62; /* tulisan dropdown */
+    text-decoration: none;
+    border-bottom: 1px solid #FFCBA1;
+}
+
+.label-dropdown .dropdown-content a:last-child {
+    border-bottom: none;
+}
+
+.label-dropdown .dropdown-content a:hover {
+    background-color: #FFB97A;
+    color: white;
+}
+
+.label-dropdown.active .dropdown-content {
+    display: block;
+}
+
+/* ===== TABLE ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: #FFE0CC;
+    padding: 12px;
+    font-size: 14px;
+    color: #444;
+}
+
+td {
+    padding: 12px;
+    text-align: center;
+    font-size: 14px;
+    border-bottom: 1px solid #F2F2F2;
+}
+
+.badge {
+    padding: 6px 14px;
+    border-radius: 14px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.normal { background: #2ECC71; color: white; }
+.warning { background: #F1C40F; color: white; }
+.danger  { background: #E53935; color: white; }
+
+@media (max-width: 768px) {
+    .container { padding: 20px 16px; }
+    th, td { font-size: 13px; padding: 10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <a href="dashboard.html" class="back-btn">‹</a>
+        <div class="header-title">Riwayat</div>
+    </div>
+
+    <!-- CARD RIWAYAT -->
+    <div class="card">
+
+        <!-- FILTER -->
+        <div class="label-dropdown">
+            <div class="label-box">
+                <span class="label" id="filter-label">30 Hari Terakhir</span>
+                <span class="dropdown-btn">▾</span>
+            </div>
+            <div class="dropdown-content">
+                <a href="#" data-days="1">1 Hari</a>
+                <a href="#" data-days="7">7 Hari</a>
+                <a href="#" data-days="30">30 Hari</a>
+            </div>
+        </div>
+
+        <!-- TABLE -->
+        <table id="riwayat-table">
+            <thead>
+                <tr>
+                    <th>Waktu</th>
+                    <th>Tekanan Darah</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-date="2025-01-30T18:30">
+                    <td>30 Jan 2025, 18.30</td>
+                    <td>118 / 80</td>
+                    <td><span class="badge normal">Normal</span></td>
+                </tr>
+                <tr data-date="2025-01-25T19:20">
+                    <td>25 Jan 2025, 19.20</td>
+                    <td>115 / 75</td>
+                    <td><span class="badge normal">Normal</span></td>
+                </tr>
+                <tr data-date="2025-01-20T07:25">
+                    <td>20 Jan 2025, 07.25</td>
+                    <td>118 / 78</td>
+                    <td><span class="badge normal">Normal</span></td>
+                </tr>
+                <tr data-date="2025-01-15T11:46">
+                    <td>15 Jan 2025, 11.46</td>
+                    <td>112 / 72</td>
+                    <td><span class="badge normal">Normal</span></td>
+                </tr>
+                <tr data-date="2025-01-10T13:41">
+                    <td>10 Jan 2025, 13.41</td>
+                    <td>120 / 80</td>
+                    <td><span class="badge normal">Normal</span></td>
+                </tr>
+                <tr data-date="2025-01-05T14:23">
+                    <td>5 Jan 2025, 14.23</td>
+                    <td>118 / 78</td>
+                    <td><span class="badge normal">Normal</span></td>
+                </tr>
+                <tr data-date="2025-01-01T10:59">
+                    <td>1 Jan 2025, 10.59</td>
+                    <td>135 / 90</td>
+                    <td><span class="badge warning">Waspada</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<script>
+// Dropdown toggle
+const dropdown = document.querySelector('.label-dropdown');
+const labelBox = dropdown.querySelector('.label-box');
+const filterLabel = document.getElementById('filter-label');
+const links = dropdown.querySelectorAll('.dropdown-content a');
+
+labelBox.addEventListener('click', () => {
+    dropdown.classList.toggle('active');
+});
+
+// Klik di luar dropdown untuk menutup
+window.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('active');
+    }
+});
+
+// Filter tabel berdasarkan hari
+links.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const days = parseInt(link.dataset.days);
+        filterLabel.textContent = link.textContent;
+        dropdown.classList.remove('active');
+
+        const tbody = document.querySelector('#riwayat-table tbody');
+        const rows = tbody.querySelectorAll('tr');
+        const today = new Date('2025-01-30'); // bisa diganti new Date() untuk tanggal sekarang
+
+        rows.forEach(row => {
+            const rowDate = new Date(row.dataset.date);
+            const diffDays = (today - rowDate) / (1000*60*60*24);
+            row.style.display = (diffDays <= days) ? '' : 'none';
+        });
+    });
+});
+</script>
+
+</body>
+</html>

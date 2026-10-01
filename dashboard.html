@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>TensiCare Dashboard</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #FFF6F1;
+    font-family: Arial, sans-serif;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 20px;
+}
+
+/* ===== HEADER ===== */
+.header {
+    background-color: #FFDCC5;
+    border-radius: 20px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    position: relative;
+}
+
+/* BACK BUTTON (AKTIF) */
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    text-decoration: none;
+    color: #FF8A3D;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* GREETING */
+.greeting {
+    background: white;
+    border-radius: 16px;
+    padding: 16px 18px;
+    font-size: 14px;
+    color: #FF8A3D;
+    margin-left: 40px;
+}
+
+/* ===== STATUS ALAT ===== */
+.status-alat {
+    padding: 12px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    width: fit-content;
+    margin: 0 auto 30px;
+}
+
+.connected {
+    background: #E6F5EF;
+    color: #1AA59A;
+}
+
+.disconnected {
+    background: #FDECEC;
+    color: #E53935;
+}
+
+/* ===== CARD ===== */
+.card {
+    background: white;
+    border-radius: 22px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+}
+
+.card small {
+    color: #FF8A3D;
+    font-size: 14px;
+}
+
+.tensi {
+    font-size: 42px;
+    font-weight: bold;
+    margin: 16px 0;
+}
+
+.unit {
+    font-size: 16px;
+    color: #777;
+}
+
+/* STATUS TENSI */
+.status {
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 16px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.normal {
+    background: #E6F5EF;
+    color: #1AA59A;
+}
+
+.warning {
+    background: #FFF4CC;
+    color: #F9A825;
+}
+
+.danger {
+    background: #FDECEC;
+    color: #E53935;
+}
+
+.date {
+    font-size: 13px;
+    color: #FF8A3D;
+}
+
+.link {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 13px;
+    color: #FF8A3D;
+    text-decoration: none;
+}
+
+/* ===== BUTTON ===== */
+.button {
+    display: block;
+    background: #FFA667;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 16px;
+    }
+
+    .tensi {
+        font-size: 32px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <!-- BACK KE ROLE -->
+        <a href="role.html" class="back-btn">‹</a>
+
+        <div class="greeting">
+            <strong>Halo, Bu Sulastri</strong><br>
+            Pantau tekanan darah Anda secara mandiri
+        </div>
+    </div>
+
+    <!-- STATUS ALAT -->
+    <div class="status-alat connected">
+        Status Alat: Terhubung
+    </div>
+
+    <!-- CARD HASIL TERAKHIR -->
+    <div class="card">
+        <small>Hasil pengukuran terakhir</small>
+
+        <div class="tensi">
+            118 / 80 <span class="unit">mmHg</span>
+        </div>
+
+        <div class="status normal">Status: Normal</div>
+
+        <div class="date">30 Jan 2025, 18.30</div>
+
+        <a href="riwayat.html" class="link">Lihat Riwayat →</a>
+    </div>
+
+    <!-- BUTTON MULAI -->
+    <a href="ukur.html" class="button">
+        Mulai Pengukuran
+    </a>
+
+</div>
+
+</body>
+</html>
